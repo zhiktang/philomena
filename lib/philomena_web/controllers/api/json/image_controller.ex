@@ -11,7 +11,7 @@ defmodule PhilomenaWeb.Api.Json.ImageController do
         [time: 30, error: ""]
         when action in [:create]
 
-  plug :set_scraper_cache
+  plug PhilomenaWeb.ScraperCachePlug
   plug PhilomenaWeb.ApiRequireAuthorizationPlug when action in [:create]
   plug PhilomenaWeb.IDValidationPlug when action in [:create]
   plug PhilomenaWeb.UserAttributionPlug when action in [:create]
@@ -59,14 +59,5 @@ defmodule PhilomenaWeb.Api.Json.ImageController do
         |> put_status(:bad_request)
         |> render("error.json", changeset: changeset)
     end
-  end
-
-  defp set_scraper_cache(conn, _opts) do
-    params =
-      conn.params
-      |> Map.put_new("image", %{})
-      |> Map.put("scraper_cache", conn.params["url"])
-
-    %{conn | params: params}
   end
 end
