@@ -2,6 +2,8 @@ version: '3'
 services:
   init:
     image: busybox
+    networks:
+    - internal
     volumes:
       - ./local-data/philomena:/system
     command: /bin/chown -v 200:200 /system
@@ -11,6 +13,8 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.app
+    networks:
+    - internal
     environment:
       - DEV_MODE
       - ELASTICSEARCH_HOST
@@ -66,6 +70,8 @@ services:
     build:
       context: ./docker/gdpr
       dockerfile: ./Dockerfile
+    networks:
+    - internal
     depends_on:
       - postgres
     environment:
@@ -75,6 +81,8 @@ services:
 
   postgres:
     image: postgres:12.3
+    networks:
+    - internal
     environment:
       - POSTGRES_PASSWORD
       - POSTGRES_USER
@@ -84,6 +92,8 @@ services:
 
   elasticsearch:
     image: elasticsearch:7.6.2
+    networks:
+    - internal
     volumes:
       - ./local-data/elastic:/var/lib/elasticsearch
     environment:
@@ -95,11 +105,16 @@ services:
 
   redis:
     image: redis:5.0.9
+    networks:
+    - internal
 
   web:
     build:
       context: .
       dockerfile: ./Dockerfile.web
+    networks:
+    - internal
+    - internet
     depends_on:
       - app
     extra_hosts:
@@ -113,3 +128,38 @@ services:
     volumes:
       - ./local-data/philomena:/system
       - ./local-data/philomena:/srv/philomena/priv/static/system
+  
+  camo:
+    build:
+      context: ./camo
+      dockerfile: ./Dockerfile
+    tmpfs:
+    - /tmp
+    ports:
+    - 9090:9090
+    networks:
+    - internal
+    - internet
+    environment:
+    - CAMO_KEY
+    restart: always
+
+  proxy:
+    image: vimagick/privoxy:latest
+    networks:
+    - internal
+    - internet
+    tmpfs:
+    - /tmp
+    ports: 
+    - 8118:8118
+    cap_add:
+    - NET_ADMIN
+    restart: always
+
+networks:
+  internal:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge
