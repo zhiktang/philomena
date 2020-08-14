@@ -91,8 +91,12 @@ function setupImageUpload() {
         showError();
         return;
       }
+      else {
+        scraperError.innerText = 'Image fetched successfully. Preview is temporarely disabled. Please continue.';
+        showError();
+      }
 
-      hideError();
+      //hideError();
 
       // Set source
       if (sourceEl) sourceEl.value = sourceEl.value || data.source_url || '';
