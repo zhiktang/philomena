@@ -86,7 +86,7 @@ services:
       - ./local-data/postgres:/var/lib/postgresql/data
 
   elasticsearch:
-    image: elasticsearch:7.6.2
+    image: elasticsearch:7.8.1
     volumes:
       - ./local-data/elastic:/var/lib/elasticsearch
     environment:
