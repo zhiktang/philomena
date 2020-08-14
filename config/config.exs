@@ -33,7 +33,7 @@ config :philomena,
   #   proxy_host: nil,
 
 config :exq,
-  queues: [{"videos", 2}, {"images", 4}, {"indexing", 16}],
+  queues: [{"videos", 2}, {"images", 12}, {"indexing", 16}],
   scheduler_enable: true,
   max_retries: 1,
   start_on_application: false,
