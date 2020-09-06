@@ -17,9 +17,6 @@ footer#footer
   #serving_info
     ' Powered by muffins and the 
     a href="https://github.com/booru/philomena" philomena project
-    br
-    ' Served by
-    => hostname()
     | (
     = render_time(@conn)
     | ms)
