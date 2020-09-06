@@ -77,7 +77,7 @@ services:
       - POSTGRES_PORT
 
   postgres:
-    image: postgres:12.3
+    image: postgres:12.4
     environment:
       - POSTGRES_PASSWORD
       - POSTGRES_USER
@@ -97,7 +97,7 @@ services:
           hard: 65536
 
   redis:
-    image: redis:5.0.9
+    image: redis:6.0.7
 
   web:
     build:
