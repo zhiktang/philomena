@@ -367,6 +367,7 @@ defmodule Philomena.Users.User do
       :avatar_width,
       :avatar_height,
       :avatar_size,
+      :avatar_mime_type,
       :uploaded_avatar,
       :removed_avatar
     ])
@@ -375,6 +376,7 @@ defmodule Philomena.Users.User do
       :avatar_width,
       :avatar_height,
       :avatar_size,
+      :avatar_mime_type,
       :uploaded_avatar
     ])
     |> validate_avatar_size(:avatar_size)
