@@ -7,6 +7,9 @@ defmodule PhilomenaWeb.Image.DestroyController do
   plug PhilomenaWeb.CanaryMapPlug, create: :destroy
   plug :load_and_authorize_resource, model: Image, id_name: "image_id", persisted: true
   plug :verify_deleted when action in [:create]
+  plug PhilomenaWeb.LimitPlug,
+     [time: 600, limit: 10, error: "You may only destroy 10 images every 10 minutes.", skip_staff: false]
+     when action in [:create]
 
   def create(conn, _params) do
     image = conn.assigns.image
