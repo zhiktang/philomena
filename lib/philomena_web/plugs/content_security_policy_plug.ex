@@ -15,12 +15,11 @@ defmodule PhilomenaWeb.ContentSecurityPolicyPlug do
     cdn_uri = cdn_uri()
     camo_uri = camo_uri()
 
-    csp_value =
     register_before_send(conn, fn conn ->
-      "default-src 'self' #{cdn_uri}; object-src 'none'; " <>	      config = get_config(conn)
-        "frame-ancestors 'none'; frame-src 'none'; form-action 'self'; " <>	
-        "manifest-src 'self'; img-src 'self' data: #{cdn_uri} #{camo_uri}; " <>	      script_src = Keyword.get(config, :script_src, [])
-        "block-all-mixed-content"	      style_src = Keyword.get(config, :style_src, [])
+      config = get_config(conn)
+      script_src = Keyword.get(config, :script_src, [])
+
+      style_src = Keyword.get(config, :style_src, [])
       frame_src = Keyword.get(config, :frame_src, nil)
 
       csp_config = [
