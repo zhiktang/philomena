@@ -4,13 +4,14 @@ defmodule Philomena.MixProject do
   def project do
     [
       app: :philomena,
-      version: "0.1.0",
+      version: "1.1.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [plt_add_apps: [:mix]]
     ]
   end
 
@@ -20,7 +21,7 @@ defmodule Philomena.MixProject do
   def application do
     [
       mod: {Philomena.Application, []},
-      extra_applications: [:logger, :canada, :mnesia, :runtime_tools]
+      extra_applications: [:logger, :canada, :runtime_tools]
     ]
   end
 
@@ -61,7 +62,6 @@ defmodule Philomena.MixProject do
       {:briefly, "~> 0.3.0"},
       {:phoenix_mtm, "~> 1.0.0"},
       {:yaml_elixir, "~> 2.4.0"},
-      {:distillery, "~> 2.1"},
       {:ranch_connection_drainer, "~> 0.1"},
       {:tesla, "~> 1.3"},
       {:castore, "~> 0.1"},

@@ -50,6 +50,10 @@ defimpl Canada.Can, for: [Atom, Philomena.Users.User] do
   def can?(%User{role: "moderator"}, _action, Image), do: true
   def can?(%User{role: "moderator"}, _action, %Image{}), do: true
 
+  # Manage channels
+  def can?(%User{role: "moderator"}, _action, Channel), do: true
+  def can?(%User{role: "moderator"}, _action, %Channel{}), do: true
+
   # View comments
   def can?(%User{role: "moderator"}, :show, %Comment{}), do: true
 
@@ -123,6 +127,9 @@ defimpl Canada.Can, for: [Atom, Philomena.Users.User] do
 
   # Revert tag changes
   def can?(%User{role: "moderator"}, :revert, TagChange), do: true
+
+  # Manage commissions
+  def can?(%User{role: "moderator"}, _action, %Commission{}), do: true
 
   # And some privileged moderators can...
 
@@ -261,7 +268,7 @@ defimpl Canada.Can, for: [Atom, Philomena.Users.User] do
     do: true
 
   # User link assistant actions
-  def can?(%User{role: "assistant", role_map: %{"UserLink" => "moderator"}}, :show, %UserLink{}),
+  def can?(%User{role: "assistant", role_map: %{"UserLink" => "moderator"}}, _action, %UserLink{}),
     do: true
 
   def can?(
