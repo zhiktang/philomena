@@ -49,6 +49,7 @@ services:
       - SMTP_RELAY
       - SMTP_PASSWORD
       - SMTP_DOMAIN
+      - SMTP_PORT
       - SMTP_USERNAME
       - SEED_ON_START=true
       - MAILER_ADDRESS
@@ -112,7 +113,7 @@ services:
     tmpfs:
       - /tmp
     ports:
-      - '8080:8080'
+      - '127.0.0.1:8080:8080'
     volumes:
       - ./local-data/philomena:/system
       - ./local-data/philomena:/srv/philomena/priv/static/system
