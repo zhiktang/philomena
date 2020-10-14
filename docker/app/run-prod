@@ -9,6 +9,20 @@ until wget -qO - $ELASTICSEARCH_HOST; do
   sleep 2
 done
 
+# Workaround for elasticsearch watermark check not working as expected within docker containers using autogrow s3 storage containers
+curl -XPUT 'elasticsearch:9200/_cluster/settings' -H 'Content-Type: application/json' -d'
+{
+    "transient": {
+        "cluster.routing.allocation.disk.watermark.low": "15gb",
+        "cluster.routing.allocation.disk.watermark.high": "10gb",
+        "cluster.routing.allocation.disk.watermark.flood_stage": "5gb",
+        "cluster.info.update.interval": "1m"
+    }
+}
+'
+
+sleep 10
+
 echo -n "Waiting for Postgres"
 
 while ! nc -z $POSTGRES_HOST $POSTGRES_PORT; do
