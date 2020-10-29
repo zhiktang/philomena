@@ -89,7 +89,7 @@ services:
   elasticsearch:
     image: elasticsearch:7.8.1
     volumes:
-      - ./local-data/elastic:/var/lib/elasticsearch
+      - ./local-data/elastic:/usr/share/elasticsearch/data
     environment:
       - discovery.type=single-node
     ulimits:
