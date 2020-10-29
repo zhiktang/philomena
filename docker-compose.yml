@@ -4,7 +4,8 @@ services:
     image: busybox
     volumes:
       - ./local-data/philomena:/system
-    command: /bin/chown -v 200:200 /system
+      - ./local-data/elastic:/elastic
+    command: /bin/chown -v 200:200 /system /elastic
     restart: "no"
 
   app:
