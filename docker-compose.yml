@@ -4,7 +4,14 @@ services:
     image: busybox
     volumes:
       - ./local-data/philomena:/system
-    command: /bin/chown -v 200:200 /system
+      - ./local-data/elastic:/elastic
+    restart: "no"
+
+  init-elastic:
+    image: busybox
+    volumes:
+      - ./local-data/elastic:/elastic
+    command: /bin/chown -v 1000:0 /elastic
     restart: "no"
 
   app:
@@ -89,9 +96,11 @@ services:
   elasticsearch:
     image: elasticsearch:7.8.1
     volumes:
-      - ./local-data/elastic:/var/lib/elasticsearch
+      - ./local-data/elastic:/usr/share/elasticsearch/data
     environment:
       - discovery.type=single-node
+    depends_on:
+      - init-elastic
     ulimits:
       nofile:
           soft: 65536
