@@ -4,3 +4,4 @@
 3 3 * * * /scripts/anonymize_reports.sh
 4 3 * * * /scripts/anonymize_source_changes.sh
 5 3 * * * /scripts/anonymize_tag_changes.sh
+6 3 * * * /scripts/anonymize_user_ips.sh

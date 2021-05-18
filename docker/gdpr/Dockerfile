@@ -5,7 +5,7 @@ ADD scripts /scripts
 COPY entry.sh /entry.sh
 RUN chmod 755 -R /scripts /entry.sh
 
-RUN apk add postgresql-client
+RUN apk add postgresql-client curl
 
 RUN /usr/bin/crontab /crontab.txt
 
