@@ -327,8 +327,8 @@ defmodule Philomena.Users.User do
     ])
     |> TagList.propagate_tag_list(:watched_tag_list, :watched_tag_ids)
     |> validate_inclusion(:theme, ~W(default dark light fuchsia green orange))
-    |> validate_inclusion(:images_per_page, 15..50)
-    |> validate_inclusion(:comments_per_page, 15..100)
+    |> validate_inclusion(:images_per_page, 1..50)
+    |> validate_inclusion(:comments_per_page, 1..100)
     |> Search.validate_search(:watched_images_query_str, user, true)
     |> Search.validate_search(:watched_images_exclude_str, user, true)
   end
@@ -389,12 +389,12 @@ defmodule Philomena.Users.User do
     validate_change(changeset, field, fn (current_field, value) ->
       if 1 > value or value > 307_200 do
         [{current_field, "must be less than or equal to 300kb"}]
-      else 
+      else
         []
       end
     end)
   end
-  
+
   def validate_avatar_dimension(changeset, field) when is_atom(field) do
     validate_change(changeset, field, fn (current_field, value) ->
       if 1 > value or value > 1_000 do
