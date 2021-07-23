@@ -77,6 +77,11 @@ pre {
   font-family: $font_family_monospace;
 }
 
+a { /* Workaround for Safari URL wrapping bug */
+    word-break: break-word;
+    -webkit-hyphens: none;
+}
+
 a, a:active, a:visited {
   color: $link_color;
   text-decoration: none;
