@@ -11,6 +11,7 @@
     "fs",
     "pp",
     "misc",
+    "g5",
     "Season 9",
     "8",
     "7",
@@ -33,6 +34,7 @@
     "fs": "shipping",
     "pp": "shipping",
     "misc": "shipping",
+    "g5": "default",
     "Season 9": "season",
     "8": "season",
     "7": "season",
@@ -269,6 +271,21 @@
       "applejack",
       "fluttershy",
       "pinkie pie"
+    ]
+  },
+  "g5": {
+    "Characters": [
+      "character:sunny starscout",
+      "character:izzy moonbow",
+      "character:zipp storm",
+      "character:pipp petals",
+      "character:hitch trailblazer",
+      "character:sprout",
+      "character:queen haven",
+      "character:argyle starshine",
+      "character:alphabittle",
+      "character:phyllis cloverleaf",
+      "character:sugar moonglow"
     ]
   },
   "Season 9": [
