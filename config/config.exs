@@ -12,7 +12,8 @@ config :philomena,
   elasticsearch_url: System.get_env("ELASTICSEARCH_HOST"),
   redis_host: System.get_env("REDIS_HOST"),
   app_env: System.get_env("MIX_ENV"),
-  app_dir: File.cwd!()
+  app_dir: File.cwd!(),
+  pwned_passwords: false
   #   password_pepper: "dn2e0EpZrvBLoxUM3gfQveBhjf0bG/6/bYhrOyq3L3hV9hdo/bimJ+irbDWsuXLP",
   #   otp_secret_key: "Wn7O/8DD+qxL0X4X7bvT90wOkVGcA90bIHww4twR03Ci//zq7PnMw8ypqyyT/b/C",
   #   tumblr_api_key: "fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4",
