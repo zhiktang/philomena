@@ -504,11 +504,11 @@ defmodule Philomena.Users.User do
     provisioning_uri = %URI{
       scheme: "otpauth",
       host: "totp",
-      path: "/YourBooruName:" <> user.email,
+      path: "/ALBooru:" <> user.email,
       query:
         URI.encode_query(%{
           secret: secret,
-          issuer: "YourBooruName"
+          issuer: "ALBooru"
         })
     }
 
